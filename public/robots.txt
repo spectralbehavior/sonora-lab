@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /admin
+Disallow: /onboarding
+
+Sitemap: https://sonora.app/sitemap.xml
