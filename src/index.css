@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --c-brand: #7C5CFF; --c-accent: #22D3EE; }
+
+html { scroll-behavior: smooth; }
+html, body, #root { min-height: 100%; }
+body { background: #06070D; color: #E4E4E7; -webkit-font-smoothing: antialiased; }
+::selection { background: rgba(124,92,255,.45); color: #fff; }
+
+* { scrollbar-width: thin; scrollbar-color: #262c3d transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #262c3d; border-radius: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+@layer components {
+  .card { @apply rounded-2xl border border-white/[.08] bg-night-800/80 shadow-panel; }
+  .glass { @apply rounded-2xl border border-white/[.10] bg-white/[.045] backdrop-blur-md; }
+  .input { @apply w-full rounded-xl border border-white/10 bg-night-850 px-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 outline-none transition focus:border-brand/60 focus:ring-2 focus:ring-brand/25; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-brand text-white hover:bg-brand-600 shadow-glow; }
+  .btn-ghost { @apply btn border border-white/10 bg-white/[.03] text-zinc-200 hover:bg-white/[.07]; }
+  .btn-sm { @apply px-3 py-1.5 text-xs rounded-lg; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[.05] px-2.5 py-1 text-[11px] font-medium text-zinc-300; }
+  .link { @apply text-brand-300 hover:text-white underline decoration-brand/40 underline-offset-2 transition; }
+  .bg-grid { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 44px 44px; }
+  .hide-scroll::-webkit-scrollbar { display: none; }
+  .hide-scroll { scrollbar-width: none; }
+}
+
+/* Conteúdo textual das aulas (mini-markdown) */
+.md { @apply text-[15px] leading-relaxed text-zinc-300; }
+.md h3 { @apply mt-6 mb-2 text-base font-bold text-white; }
+.md p { @apply my-3; }
+.md ul { @apply my-3 space-y-1.5 pl-1; }
+.md li { @apply relative pl-5; }
+.md li::before { content: '▸'; position: absolute; left: 2px; color: var(--c-brand); }
+.md strong { @apply text-white font-semibold; }
+.md code { @apply rounded bg-white/[.07] px-1.5 py-0.5 font-mono text-[13px] text-neon-cyan; }
+.md ol { @apply my-3 space-y-1.5 pl-5 list-decimal marker:text-brand-400; }
+
+@keyframes eqbar { 0%,100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+.eqbar { transform-origin: center; animation: eqbar 1.15s ease-in-out infinite; }
+
+@keyframes ping-slow { 0% { transform: scale(1); opacity: .5; } 80%,100% { transform: scale(2.1); opacity: 0; } }
+.ping-slow { animation: ping-slow 2.6s cubic-bezier(0,0,.2,1) infinite; }
+
+@keyframes toast-in { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+.toast-in { animation: toast-in .35s cubic-bezier(.2,.8,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}
